@@ -18,30 +18,51 @@
         <!--android:id="@+id/expandableListView"-->
         <!--android:layout_gravity="center_horizontal">-->
 
-        <TextView
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background='@color/contentBackground'
+        android:paddingLeft="20dp">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/editText"
-            android:text="@string/date"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="46dp"
-            android:background='@color/contentBackground'/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="143dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:text="@string/date"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:paddingTop="20dp" />
+
+
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:ems="70"
+                android:id="@+id/editText2"
+                android:text="@string/time"
+                android:textSize="40sp"
+                android:paddingTop="10dp"
+                android:paddingLeft="25dp" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="70"
             android:id="@+id/editText2"
-            android:text="@string/time"
-            android:textSize="40sp"
-            android:layout_below="@+id/editText"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:text="@string/where"
+            android:textSize="30sp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,11 +71,127 @@
             android:id="@+id/editText2"
             android:text="@string/what"
             android:textSize="20sp"
-            android:layout_alignTop="@+id/editText"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="147dp"
-            android:layout_marginStart="147dp" />
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background='@color/contentBackground'
+        android:paddingLeft="20dp"
+        android:layout_marginTop="200dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="143dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:text="Sept. 30th"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:paddingTop="20dp" />
+
+
+            <TextView
+                android:layout_width="177dp"
+                android:layout_height="wrap_content"
+                android:ems="70"
+                android:id="@+id/editText2"
+                android:text="8:00am"
+                android:textSize="40sp"
+                android:paddingTop="10dp"
+                android:paddingLeft="25dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="70"
+            android:id="@+id/editText2"
+            android:text="Campus Center 112"
+            android:textSize="30sp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="70"
+            android:id="@+id/editText2"
+            android:text="BAGELS!"
+            android:textSize="20sp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background='@color/contentBackground'
+        android:paddingLeft="20dp"
+        android:layout_marginTop="400dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="143dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:text="Oct 1st"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:paddingTop="20dp" />
+
+
+            <TextView
+                android:layout_width="182dp"
+                android:layout_height="wrap_content"
+                android:ems="70"
+                android:id="@+id/editText2"
+                android:text="10:00pm"
+                android:textSize="40sp"
+                android:paddingTop="10dp"
+                android:paddingLeft="25dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="70"
+            android:id="@+id/editText2"
+            android:text="Carpenter House"
+            android:textSize="30sp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="70"
+            android:id="@+id/editText2"
+            android:text="Candy and movie viewing"
+            android:textSize="20sp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp" />
+    </LinearLayout>
+
 
     <!--</ExpandableListView>-->
 </RelativeLayout>

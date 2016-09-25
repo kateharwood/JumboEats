@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">JumboEats</string>
-    <string name="time">5pm</string>
+    <string name="time">5:00pm</string>
     <string name="date">Sept 21st</string>
     <string name="what">Senior dinner with Monaco</string>
+    <string name="where">Prez Lawn</string>
+
 
 </resources>
