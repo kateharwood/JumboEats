@@ -6,4 +6,5 @@
     <color name="background">#99ddff</color>
     <color name="statusBar">#663300</color>
     <color name="contentBackground">#ffffff</color>
+    <color name="button">#98f442</color>
 </resources>

@@ -11,6 +11,16 @@
     android:background="@color/background">
 
 
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="+"
+        android:id="@+id/button"
+        android:background="@color/button"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/linearLayout2"
+        android:layout_alignEnd="@+id/linearLayout2"
+        android:onClick="buttonOnClick" />
 
     <!--<ExpandableListView-->
         <!--android:layout_width="match_parent"-->
@@ -23,7 +33,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background='@color/contentBackground'
-        android:paddingLeft="20dp">
+        android:paddingLeft="20dp"
+        android:layout_marginTop="51dp"
+        android:id="@+id/linearLayout2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -81,7 +95,11 @@
         android:orientation="vertical"
         android:background='@color/contentBackground'
         android:paddingLeft="20dp"
-        android:layout_marginTop="200dp">
+        android:layout_marginTop="32dp"
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -140,7 +158,10 @@
         android:orientation="vertical"
         android:background='@color/contentBackground'
         android:paddingLeft="20dp"
-        android:layout_marginTop="400dp">
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="33dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
