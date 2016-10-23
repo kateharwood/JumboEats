@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     r.close();
                     is.close();
+                    Log.e("get response", String.valueOf(conn.getResponseCode()));
                     return new JSONArray(total.toString());
                 }
                 catch (MalformedURLException e) {
@@ -155,15 +156,18 @@ public class MainActivity extends AppCompatActivity {
 
         AsyncTask<Void, Integer, JSONArray> json = new GetData(getApplicationContext()).execute();
 
-        Button b = (Button) findViewById(R.id.button);
+        Button createNewEvent = (Button) findViewById(R.id.createNewEvent);
 
-        assert b != null;
-        b.setOnClickListener(new View.OnClickListener () {
+        assert createNewEvent != null;
+        createNewEvent.setOnClickListener(new View.OnClickListener () {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Pop.class));
             }
         });
+
+
+
 
     }
 }
