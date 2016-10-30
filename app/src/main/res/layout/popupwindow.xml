@@ -1,64 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:layout_margin="50dp">
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <EditText android:id="@+id/edit_event"
-        android:layout_weight="1"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/enter_event" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText android:id="@+id/edit_food"
-        android:layout_weight="1"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@+id/edit_event"
-        android:hint="@string/enter_food" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="50dp"
+            android:gravity="center_horizontal">
 
-    <EditText android:id="@+id/edit_place"
-        android:layout_weight="1"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_food"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/enter_place"
-        android:clickable="false" />
+            <EditText android:id="@+id/edit_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_food"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentLeft="false" />
 
-    <EditText android:id="@+id/edit_time"
-        android:inputType="time"
-        android:layout_weight="1"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_place"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/enter_time"
-        android:clickable="false" />
+            <EditText android:id="@+id/edit_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_place"
+                android:clickable="false"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/edit_food"
+                android:layout_marginTop="30dp"/>
 
-    <DatePicker
-        android:layout_width="200dp"
-        android:layout_height="400dp"
-        android:id="@+id/datePicker"
-        android:calendarViewShown="false"
-        android:clickable="false"
-        android:layout_below="@+id/edit_time"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+            <!--<EditText android:id="@+id/edit_time"-->
+                <!--android:inputType="time"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="@string/enter_time"-->
+                <!--android:clickable="false"-->
+                <!--android:layout_below="@+id/edit_place"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="30dp"/>-->
 
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="+"
-        android:id="@+id/postEvent"
-        android:background="@color/button"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/linearLayout2"
-        android:layout_alignEnd="@+id/linearLayout2"
-        android:onClick="buttonOnClick" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_event"
+                android:hint="@string/enter_event"
+                android:layout_below="@+id/edit_place"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp" />
 
+
+
+            <DatePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_date"
+                android:layout_below="@+id/edit_event"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="49dp" />
+
+            <TimePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_time"
+                android:layout_below="@+id/edit_date"
+                android:layout_marginTop="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_time"
+                android:gravity="center_horizontal|right"
+                android:layout_marginTop="50dp">
+
+                <Button
+                    android:layout_width="130dp"
+                    android:layout_height="60dp"
+                    android:text="@string/cancel"
+                    android:textSize="30sp"
+                    android:textColor="@color/brownTheme"
+                    android:id="@+id/cancel_event"
+                    android:background="@color/postButton"
+                    android:onClick="buttonOnClick"
+                    android:layout_marginRight="30dp"
+                    />
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:text="@string/post"
+                    android:textSize="30sp"
+                    android:textColor="@color/brownTheme"
+                    android:id="@+id/post_event"
+                    android:background="@color/postButton"
+                    android:onClick="buttonOnClick"
+                    android:layout_alignBottom="@+id/cancel_event"
+                    android:layout_toRightOf="@+id/cancel_event"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

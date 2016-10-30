@@ -1,53 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:weightSum="2">
 
-    <TextView
-        android:id="@+id/time"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
-        android:paddingTop="6dip"
-        android:textColor="@color/brownTheme"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_height="fill_parent"
+        android:background="@drawable/shape"
+        android:padding="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        >
 
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
-        android:textSize="25sp"
-        android:textColor="@color/brownTheme" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/leftSide"
+            >
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/food"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#5d5d5d"
-        android:textStyle="bold"
-        android:layout_marginLeft="200dp"
-        android:layout_alignTop="@+id/time" />
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/brownTheme"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:padding="2dp"
+                    android:gravity="end"
+                    android:layout_below="@+id/date"
+                    android:layout_marginBottom="40dp"
+                    />
 
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#5d5d5d"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/sponsor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#5d5d5d"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/other"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#5d5d5d"
-        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/brownTheme"
+                    android:padding="2dp"
+                    android:gravity="end"
+                    />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/brownTheme"
+                    android:textSize="20sp"
+                    android:layout_alignParentBottom="true"
+                    android:paddingTop="20dp"
+                    android:gravity="right"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="5dp"
+            android:background="@color/brownTheme"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape"
+            android:id="@+id/rightSide"
+            >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/food"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:gravity="start"
+                    android:textColor="@color/brownTheme"
+                    android:textSize="20sp"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="40dp"
+                    tools:ignore="UnusedAttribute" />
+
+
+                <TextView
+                    android:id="@+id/sponsor"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/brownTheme"
+                    android:textSize="20sp"
+                    android:gravity="start"
+                    android:layout_alignParentBottom="true"
+                    />
+
+                <!--<TextView-->
+                    <!--android:id="@+id/other"-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@color/brownTheme"-->
+                    <!--android:textSize="20dp"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:gravity="start"-->
+                    <!--android:layout_below="@+id/food"/>-->
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
 </LinearLayout>

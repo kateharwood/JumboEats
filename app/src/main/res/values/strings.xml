@@ -4,9 +4,17 @@
     <!--<string name="date">Sept 21st</string>-->
     <!--<string name="what">Senior dinner with Monaco</string>-->
     <!--<string name="where">Prez Lawn</string>-->
-    <string name="enter_event">What event?</string>
+    <string name="enter_event">What group / other info?</string>
     <string name="enter_food">What food?</string>
-    <string name="enter_place">Where?</string>
-    <string name="enter_time">When?</string>
+    <string name="enter_place">Where on campus?</string>
+    <string name="enter_time">What time?</string>
+    <string name="post">POST</string>
+    <string name="cancel">CANCEL</string>
+    <string name="plus_sign">+</string>
+    <string name="jumbo_eats">JumboEats</string>
+
+
+
+
 
 </resources>

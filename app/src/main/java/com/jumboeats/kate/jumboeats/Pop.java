@@ -6,13 +6,16 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.util.Log;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.os.AsyncTask;
+import android.widget.TimePicker;
 
 import org.json.JSONObject;
 
 import java.net.URL;
 import java.net.HttpURLConnection;
+import java.sql.Time;
 import java.util.Iterator;
 import java.net.URLEncoder;
 import java.io.BufferedWriter;
@@ -41,7 +44,7 @@ public class Pop extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * .6), (int) (height * .8));
+        getWindow().setLayout((int) (width * .7), (int) (height * .7));
 
 //        EditText eventName;
 //        EditText food;
@@ -51,31 +54,45 @@ public class Pop extends Activity {
 
         //****** SAVE USER INPUT *******//
 
-        Button postEvent = (Button) findViewById(R.id.postEvent);
+        Button postEvent = (Button) findViewById(R.id.post_event);
+        Button cancelEvent = (Button) findViewById(R.id.cancel_event);
+        assert cancelEvent != null;
+        cancelEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         assert postEvent != null;
         postEvent.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
+                final String[] MONTHS = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+                String halfOfDay = "am";
+
                 final EditText eventName = (EditText) findViewById(R.id.edit_event);
                 final EditText food = (EditText) findViewById(R.id.edit_food);
                 final EditText location = (EditText) findViewById(R.id.edit_place);
-                final EditText time = (EditText) findViewById(R.id.edit_time);
-                String date = "location";
+                final TimePicker time = (TimePicker) findViewById(R.id.edit_time);
+                final DatePicker date = (DatePicker) findViewById(R.id.edit_date);
 
-                Log.v("blah", food.getText().toString());
                 final String theFood = food.getText().toString();
-                final String theTime = time.getText().toString();
+                int theHour = time.getCurrentHour();
+                final int theMinute = time.getCurrentMinute();
                 final String theLocation = location.getText().toString();
                 final String theEvent = eventName.getText().toString();
+                final int theMonth = date.getMonth() + 1;
+                final int theDay = date.getDayOfMonth();
 
+                if (theHour > 12) {
+                    theHour = theHour - 12;
+                    halfOfDay = "pm";
+                }
 
-//            }
-//        });
-//    }}
-
-
+                final String theDate = MONTHS[theMonth] + " " + String.valueOf(theDay);
+                final String theTime = String.valueOf(theHour) + ":" + String.valueOf(theMinute) + halfOfDay;
 
 
                 //****** POST INPUT TO SERVER ********//
@@ -89,7 +106,7 @@ public class Pop extends Activity {
                             URL url = new URL("http://jumboeats.herokuapp.com/post");
 
                             JSONObject postDataParams = new JSONObject();
-                            postDataParams.put("date", "now");
+                            postDataParams.put("date", theDate);
                             postDataParams.put("time", theTime);
                             postDataParams.put("food", theFood);
                             postDataParams.put("location", theLocation);
@@ -186,6 +203,9 @@ public class Pop extends Activity {
                     }
                  }
                 new sendPostRequest().execute();
+                Log.v("here", "here");
+                finish();
+                return;
             }
         });
     }

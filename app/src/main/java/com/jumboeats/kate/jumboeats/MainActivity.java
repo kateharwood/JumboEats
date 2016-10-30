@@ -47,114 +47,113 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> eventList = new ArrayList<>();
 
+    public void buttonOnClick(View view) {
+    }
+
+    public class GetData extends AsyncTask<Void, Integer, JSONArray> {
+        private Context copyOfContext;
+
+        public GetData (Context context) {
+            super();
+            copyOfContext = context;
+        }
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+            date = (TextView)findViewById(R.id.date);
+            time = (TextView)findViewById(R.id.time);
+            food = (TextView)findViewById(R.id.food);
+            sponsor = (TextView)findViewById(R.id.sponsor);
+            location = (TextView)findViewById(R.id.location);
+//                 other = (TextView)findViewById(R.id.other);
+
+        }
+
+
+        //    @Override
+        protected JSONArray doInBackground(Void... params) {
+            try {
+                URL api = new URL("http://jumboeats.herokuapp.com/");
+                HttpURLConnection conn = (HttpURLConnection)api.openConnection();
+
+                InputStream is = conn.getInputStream();
+                BufferedReader r = new BufferedReader(new InputStreamReader(is));
+                StringBuilder total = new StringBuilder();
+                String line;
+                while ((line = r.readLine()) != null) {
+                    total.append(line);
+                }
+                r.close();
+                is.close();
+                Log.e("get response", String.valueOf(conn.getResponseCode()));
+                return new JSONArray(total.toString());
+            }
+            catch (MalformedURLException e) {
+                Log.e("doInBackground(): ", e.toString());
+                return null;
+            }
+            catch (IOException e) {
+                Log.e("doInBackground(): ", e.toString());
+                return null;
+            }
+            catch (JSONException e) {
+                Log.e("doInBackground(): ", e.toString());
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray jArray) {
+            if (jArray != null) {
+                JSONObject entry;
+
+                try {
+                    int numMessages = jArray.length();
+                    for (int i = 0; i < numMessages; i++) {
+                        entry = jArray.getJSONObject(i);
+
+                        String date = entry.getString(TAG_DATE);
+                        String time = entry.getString(TAG_TIME);
+                        String food = entry.getString(TAG_FOOD);
+                        String sponsor = entry.getString(TAG_SPONSOR);
+                        String location = entry.getString(TAG_LOCATION);
+//                            String other = entry.getString(TAG_OTHER);
+
+
+                        HashMap<String, String> map = new HashMap<String, String>();
+                        map.put(TAG_DATE, date);
+                        map.put(TAG_TIME, time);
+                        map.put(TAG_FOOD, food);
+                        map.put(TAG_SPONSOR, sponsor);
+                        map.put(TAG_LOCATION, location);
+//                            map.put(TAG_OTHER, other);
+
+                        eventList.add(0, map);
+                        list = (ListView) findViewById(R.id.list);
+
+                        ListAdapter adapter = new SimpleAdapter(MainActivity.this, eventList,
+                                R.layout.list_item, new String[]{TAG_DATE, TAG_TIME, TAG_FOOD, TAG_SPONSOR, TAG_LOCATION, TAG_OTHER},
+                                new int[]{R.id.date, R.id.time, R.id.food, R.id.sponsor, R.id.location /*R.id.other*/});
+
+                        list.setAdapter(adapter);
+                    }
+
+                } catch (JSONException e) {
+                    Log.e("onPostExecute", e.toString());
+                }
+
+            }
+        }
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-         class GetData extends AsyncTask<Void, Integer, JSONArray> {
-//            private Context copyOfContext;
-
-            public GetData (Context context) {
-                super();
-//                copyOfContext = context;
-            }
-
-             protected void onPreExecute() {
-                 super.onPreExecute();
-                 date = (TextView)findViewById(R.id.date);
-                 time = (TextView)findViewById(R.id.time);
-                 food = (TextView)findViewById(R.id.food);
-                 sponsor = (TextView)findViewById(R.id.sponsor);
-                 location = (TextView)findViewById(R.id.location);
-                 other = (TextView)findViewById(R.id.other);
-
-             }
-
-
-            //    @Override
-            protected JSONArray doInBackground(Void... params) {
-                try {
-                    URL api = new URL("http://jumboeats.herokuapp.com/");
-                    HttpURLConnection conn = (HttpURLConnection)api.openConnection();
-
-                    InputStream is = conn.getInputStream();
-                    BufferedReader r = new BufferedReader(new InputStreamReader(is));
-                    StringBuilder total = new StringBuilder();
-                    String line;
-                    while ((line = r.readLine()) != null) {
-                        total.append(line);
-                    }
-                    r.close();
-                    is.close();
-                    Log.e("get response", String.valueOf(conn.getResponseCode()));
-                    return new JSONArray(total.toString());
-                }
-                catch (MalformedURLException e) {
-                    Log.e("doInBackground(): ", e.toString());
-                    return null;
-                }
-                catch (IOException e) {
-                    Log.e("doInBackground(): ", e.toString());
-                    return null;
-                }
-                catch (JSONException e) {
-                    Log.e("doInBackground(): ", e.toString());
-                    return null;
-                }
-            }
-
-            @Override
-            protected void onPostExecute(JSONArray jArray) {
-                if (jArray != null) {
-                    JSONObject entry;
-
-                    try {
-                        int numMessages = jArray.length();
-                        for (int i = 0; i < numMessages; i++) {
-                            entry = jArray.getJSONObject(i);
-
-                            String date = entry.getString(TAG_DATE);
-                            String time = entry.getString(TAG_TIME);
-                            String food = entry.getString(TAG_FOOD);
-                            String sponsor = entry.getString(TAG_SPONSOR);
-                            String location = entry.getString(TAG_LOCATION);
-                            String other = entry.getString(TAG_OTHER);
-
-
-                            HashMap<String, String> map = new HashMap<String, String>();
-                            map.put(TAG_DATE, date);
-                            map.put(TAG_TIME, time);
-                            map.put(TAG_FOOD, food);
-                            map.put(TAG_SPONSOR, sponsor);
-                            map.put(TAG_LOCATION, location);
-                            map.put(TAG_OTHER, other);
-
-
-                            eventList.add(map);
-                            list = (ListView) findViewById(R.id.list);
-
-                            ListAdapter adapter = new SimpleAdapter(MainActivity.this, eventList,
-                                    R.layout.list_item, new String[]{TAG_DATE, TAG_TIME, TAG_FOOD, TAG_SPONSOR, TAG_LOCATION, TAG_OTHER},
-                                    new int[]{R.id.date, R.id.time, R.id.food, R.id.sponsor, R.id.location, R.id.other});
-
-                            list.setAdapter(adapter);
-                        }
-
-                    } catch (JSONException e) {
-                        Log.e("onPostExecute", e.toString());
-                    }
-
-                }
-            }
-
-        }
-
-
-
-        AsyncTask<Void, Integer, JSONArray> json = new GetData(getApplicationContext()).execute();
+        new GetData(getApplicationContext()).execute();
 
         Button createNewEvent = (Button) findViewById(R.id.createNewEvent);
 
@@ -170,4 +169,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onResume() {
+        Log.v("here", "resuming");
+        super.onResume();
+
+        new GetData(getApplicationContext()).execute();
+
+    }
+
 }

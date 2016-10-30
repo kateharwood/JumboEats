@@ -14,7 +14,7 @@
     <Button
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="+"
+        android:text="@string/plus_sign"
         android:id="@+id/createNewEvent"
         android:background="@color/button"
         android:onClick="buttonOnClick"
@@ -25,12 +25,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="JumboEats"
+        android:text="@string/jumbo_eats"
         android:id="@+id/title"
         android:layout_alignTop="@+id/createNewEvent"
         android:background="#663300"
         android:textColor="#ffffff"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:typeface="sans"
         android:gravity="center"
         android:layout_alignParentLeft="true"
