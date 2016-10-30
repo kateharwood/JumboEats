@@ -37,3 +37,10 @@
 18:03:57 No suspicious code found
 18:04:08 No suspicious code found
 18:05:57 No suspicious code found
+
+
+
+
+/* We suppressed some issues like the Google Indexing issue and deprecated methods (we keep these for lower APIs and also have the corresponding methods for the newer APIs), as well as some layout issues that were in the xml code that gave us the UI the look we wanted*/
+
+
