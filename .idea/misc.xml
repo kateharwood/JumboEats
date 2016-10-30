@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+    <entry_points version="2.0">
+      <entry_point TYPE="field" FQNAME="com.jumboeats.kate.jumboeats.MainActivity location" />
+      <entry_point TYPE="field" FQNAME="com.jumboeats.kate.jumboeats.MainActivity date" />
+      <entry_point TYPE="field" FQNAME="com.jumboeats.kate.jumboeats.MainActivity time" />
+      <entry_point TYPE="field" FQNAME="com.jumboeats.kate.jumboeats.MainActivity food" />
+      <entry_point TYPE="field" FQNAME="com.jumboeats.kate.jumboeats.MainActivity sponsor" />
+    </entry_points>
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

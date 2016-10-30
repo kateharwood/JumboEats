@@ -1,6 +1,5 @@
 package com.jumboeats.kate.jumboeats;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,37 +35,28 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_OTHER = "Other";
 
 
-    ListView list;
-    TextView date;
-    TextView time;
-    TextView food;
-    TextView sponsor;
-    TextView location;
-    TextView other;
+    // --Commented out by Inspection (10/30/16, 17:51):TextView other;
 
-    ArrayList<HashMap<String, String>> eventList = new ArrayList<>();
-
-    public void buttonOnClick(View view) {
-    }
+    private final ArrayList<HashMap<String, String>> eventList = new ArrayList<>();
 
     public class GetData extends AsyncTask<Void, Integer, JSONArray> {
-        private Context copyOfContext;
+        // private final Context copyOfContext;
 
-        public GetData (Context context) {
+        public GetData() {
             super();
-            copyOfContext = context;
+//            copyOfContext = context;
         }
 
-        protected void onPreExecute() {
-            super.onPreExecute();
-            date = (TextView)findViewById(R.id.date);
-            time = (TextView)findViewById(R.id.time);
-            food = (TextView)findViewById(R.id.food);
-            sponsor = (TextView)findViewById(R.id.sponsor);
-            location = (TextView)findViewById(R.id.location);
-//                 other = (TextView)findViewById(R.id.other);
-
-        }
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+////            TextView date = (TextView) findViewById(R.id.date);
+////            TextView time = (TextView) findViewById(R.id.time);
+////            TextView food = (TextView) findViewById(R.id.food);
+////            TextView sponsor = (TextView) findViewById(R.id.sponsor);
+////            TextView location = (TextView) findViewById(R.id.location);
+//////                 other = (TextView)findViewById(R.id.other);
+//
+//        }
 
 
         //    @Override
@@ -120,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 //                            String other = entry.getString(TAG_OTHER);
 
 
-                        HashMap<String, String> map = new HashMap<String, String>();
+                        HashMap<String, String> map = new HashMap<>();
                         map.put(TAG_DATE, date);
                         map.put(TAG_TIME, time);
                         map.put(TAG_FOOD, food);
@@ -129,12 +118,13 @@ public class MainActivity extends AppCompatActivity {
 //                            map.put(TAG_OTHER, other);
 
                         eventList.add(0, map);
-                        list = (ListView) findViewById(R.id.list);
+                        ListView list = (ListView) findViewById(R.id.list);
 
                         ListAdapter adapter = new SimpleAdapter(MainActivity.this, eventList,
                                 R.layout.list_item, new String[]{TAG_DATE, TAG_TIME, TAG_FOOD, TAG_SPONSOR, TAG_LOCATION, TAG_OTHER},
                                 new int[]{R.id.date, R.id.time, R.id.food, R.id.sponsor, R.id.location /*R.id.other*/});
 
+                        assert list != null;
                         list.setAdapter(adapter);
                     }
 
@@ -153,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new GetData(getApplicationContext()).execute();
+        new GetData().execute();
 
         Button createNewEvent = (Button) findViewById(R.id.createNewEvent);
 
@@ -175,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         Log.v("here", "resuming");
         super.onResume();
 
-        new GetData(getApplicationContext()).execute();
+        new GetData().execute();
 
     }
 

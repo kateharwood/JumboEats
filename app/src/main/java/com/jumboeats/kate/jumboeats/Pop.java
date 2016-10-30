@@ -15,7 +15,6 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.net.HttpURLConnection;
-import java.sql.Time;
 import java.util.Iterator;
 import java.net.URLEncoder;
 import java.io.BufferedWriter;
@@ -27,7 +26,7 @@ import java.io.InputStreamReader;
 
 
 /**
- * Created by kate on 10/2/16.
+ * Pop up window to post free food events
  */
 
 public class Pop extends Activity {
@@ -45,11 +44,6 @@ public class Pop extends Activity {
         int height = dm.heightPixels;
 
         getWindow().setLayout((int) (width * .7), (int) (height * .7));
-
-//        EditText eventName;
-//        EditText food;
-//        EditText location;
-//        EditText time;
 
 
         //****** SAVE USER INPUT *******//
@@ -79,8 +73,23 @@ public class Pop extends Activity {
                 final DatePicker date = (DatePicker) findViewById(R.id.edit_date);
 
                 final String theFood = food.getText().toString();
-                int theHour = time.getCurrentHour();
-                final int theMinute = time.getCurrentMinute();
+                int theHour;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    theHour = time.getHour();
+                }
+                else {
+                    //noinspection deprecation
+                    theHour = time.getCurrentHour(); // for APIs less than 23
+                }
+
+                final int theMinute;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    theMinute = time.getMinute();
+                }
+                else {
+                    //noinspection deprecation
+                    theMinute = time.getCurrentMinute(); // for APIs less than 23
+                }
                 final String theLocation = location.getText().toString();
                 final String theEvent = eventName.getText().toString();
                 final int theMonth = date.getMonth() + 1;
@@ -143,13 +152,12 @@ public class Pop extends Activity {
                                 BufferedReader in=new BufferedReader(
                                         new InputStreamReader(
                                                 conn.getInputStream()));
-                                StringBuffer sb = new StringBuffer("");
-                                String line="";
+                                StringBuilder sb = new StringBuilder("");
+                                String line;
 
-                                while((line = in.readLine()) != null) {
+                                if((line = in.readLine()) != null) {
 
                                     sb.append(line);
-                                    break;
                                 }
 
                                 in.close();
@@ -157,14 +165,14 @@ public class Pop extends Activity {
 
                             }
                             else {
-                                return new String("false : "+responseCode);
+                                return "false : " + responseCode;
                             }
                         }
 
 
                          catch(Exception e){
 
-                             return new String("Exception: " + e.getMessage());
+                             return "Exception: " + e.getMessage();
                          }
                     }
 
@@ -205,7 +213,6 @@ public class Pop extends Activity {
                 new sendPostRequest().execute();
                 Log.v("here", "here");
                 finish();
-                return;
             }
         });
     }
