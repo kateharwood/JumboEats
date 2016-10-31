@@ -11,6 +11,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.services.common.Crash;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_LOCATION = "Location";
     private static final String TAG_OTHER = "Other";
 
-
-    // --Commented out by Inspection (10/30/16, 17:51):TextView other;
 
     private final ArrayList<HashMap<String, String>> eventList = new ArrayList<>();
 
@@ -78,14 +80,17 @@ public class MainActivity extends AppCompatActivity {
                 return new JSONArray(total.toString());
             }
             catch (MalformedURLException e) {
+                Crashlytics.logException(e);
                 Log.e("doInBackground(): ", e.toString());
                 return null;
             }
             catch (IOException e) {
+                Crashlytics.logException(e);
                 Log.e("doInBackground(): ", e.toString());
                 return null;
             }
             catch (JSONException e) {
+                Crashlytics.logException(e);
                 Log.e("doInBackground(): ", e.toString());
                 return null;
             }
@@ -129,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 } catch (JSONException e) {
+                    Crashlytics.logException(e);
                     Log.e("onPostExecute", e.toString());
                 }
 
@@ -141,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         new GetData().execute();

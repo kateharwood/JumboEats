@@ -23,6 +23,9 @@
         <activity android:name=".Pop" android:theme="@style/AppTheme.CustomTheme">
         </activity>
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="28edb4ae887e01dae2f24a2cc08732923a655cc3" />
     </application>
 
 </manifest>

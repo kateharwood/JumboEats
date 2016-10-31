@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.os.AsyncTask;
 import android.widget.TimePicker;
 
+import com.crashlytics.android.Crashlytics;
+
 import org.json.JSONObject;
 
 import java.net.URL;
@@ -171,7 +173,7 @@ public class Pop extends Activity {
 
 
                          catch(Exception e){
-
+                             Crashlytics.logException(e);
                              return "Exception: " + e.getMessage();
                          }
                     }
