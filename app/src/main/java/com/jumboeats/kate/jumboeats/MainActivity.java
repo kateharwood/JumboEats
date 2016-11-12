@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_OTHER = "Other";
 
 
-    private final ArrayList<HashMap<String, String>> eventList = new ArrayList<>();
+    private ListView list;
+
+    private ArrayList<HashMap<String, String>> eventList = new ArrayList<>();
 
     public class GetData extends AsyncTask<Void, Integer, JSONArray> {
         // private final Context copyOfContext;
@@ -76,22 +78,22 @@ public class MainActivity extends AppCompatActivity {
                 }
                 r.close();
                 is.close();
-                Log.e("get response", String.valueOf(conn.getResponseCode()));
+//                Log.e("get response", String.valueOf(conn.getResponseCode()));
                 return new JSONArray(total.toString());
             }
             catch (MalformedURLException e) {
                 Crashlytics.logException(e);
-                Log.e("doInBackground(): ", e.toString());
+//                Log.e("doInBackground(): ", e.toString());
                 return null;
             }
             catch (IOException e) {
                 Crashlytics.logException(e);
-                Log.e("doInBackground(): ", e.toString());
+//                Log.e("doInBackground(): ", e.toString());
                 return null;
             }
             catch (JSONException e) {
                 Crashlytics.logException(e);
-                Log.e("doInBackground(): ", e.toString());
+//                Log.e("doInBackground(): ", e.toString());
                 return null;
             }
         }
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 //                            map.put(TAG_OTHER, other);
 
                         eventList.add(0, map);
-                        ListView list = (ListView) findViewById(R.id.list);
+                        list = (ListView) findViewById(R.id.list);
 
                         ListAdapter adapter = new SimpleAdapter(MainActivity.this, eventList,
                                 R.layout.list_item, new String[]{TAG_DATE, TAG_TIME, TAG_FOOD, TAG_SPONSOR, TAG_LOCATION, TAG_OTHER},
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     Crashlytics.logException(e);
-                    Log.e("onPostExecute", e.toString());
+//                    Log.e("onPostExecute", e.toString());
                 }
 
             }
@@ -149,8 +151,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
-
-        new GetData().execute();
 
         Button createNewEvent = (Button) findViewById(R.id.createNewEvent);
 
@@ -169,9 +169,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Log.v("here", "resuming");
         super.onResume();
-
+        eventList.clear();
+        list = (ListView) findViewById(R.id.list);
+        list.setAdapter(null);
         new GetData().execute();
 
     }

@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/background"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        >
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+            <!--android:text="@string/jumbo_eats"-->
+            <!--android:id="@+id/title"-->
+            <!--android:background="#663300"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:textSize="30sp"-->
+            <!--android:typeface="sans" />-->
+            <!--android:gravity="center"/>-->
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -14,35 +28,36 @@
             android:padding="50dp"
             android:gravity="center_horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_food"
+                android:id="@+id/title"
+                android:textColor="@color/brownTheme"
+                android:textSize="30sp"
+                android:layout_marginBottom="60dp"
+                android:gravity="center"
+                />
+
             <EditText android:id="@+id/edit_food"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_food"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentStart="false"
-                android:layout_alignParentLeft="false" />
+                android:layout_alignParentLeft="false"
+                android:background="@drawable/edit_text"
+                android:layout_below="@+id/title"/>
 
             <EditText android:id="@+id/edit_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_place"
-                android:clickable="false"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/edit_food"
-                android:layout_marginTop="30dp"/>
+                android:layout_marginTop="50dp"
+                android:background="@drawable/edit_text"/>
 
-            <!--<EditText android:id="@+id/edit_time"-->
-                <!--android:inputType="time"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:hint="@string/enter_time"-->
-                <!--android:clickable="false"-->
-                <!--android:layout_below="@+id/edit_place"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:layout_marginTop="30dp"/>-->
 
             <EditText
                 android:layout_width="match_parent"
@@ -52,7 +67,10 @@
                 android:layout_below="@+id/edit_place"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="30dp" />
+                android:layout_marginTop="50dp"
+                android:background="@drawable/edit_text"
+
+                />
 
 
 
@@ -63,7 +81,8 @@
                 android:layout_below="@+id/edit_event"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="49dp" />
+                android:layout_marginTop="49dp"
+                android:backgroundTint="@color/brownTheme" />
 
             <TimePicker
                 android:layout_width="wrap_content"
@@ -78,9 +97,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edit_time"
-                android:gravity="center_horizontal|right"
-                android:layout_marginTop="50dp">
-
+                android:layout_marginTop="50dp"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/brownTheme" >
                 <Button
                     android:layout_width="130dp"
                     android:layout_height="60dp"
@@ -88,8 +107,8 @@
                     android:textSize="30sp"
                     android:textColor="@color/brownTheme"
                     android:id="@+id/cancel_event"
-                    android:background="@color/postButton"
                     android:layout_marginRight="30dp"
+                    android:background="@drawable/button"
                     />
 
                 <Button
@@ -99,9 +118,9 @@
                     android:textSize="30sp"
                     android:textColor="@color/brownTheme"
                     android:id="@+id/post_event"
-                    android:background="@color/postButton"
                     android:layout_alignBottom="@+id/cancel_event"
-                    android:layout_toRightOf="@+id/cancel_event"/>
+                    android:layout_toRightOf="@+id/cancel_event"
+                    android:background="@drawable/button"/>
 
             </RelativeLayout>
 

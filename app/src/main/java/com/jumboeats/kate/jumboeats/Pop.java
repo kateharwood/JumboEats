@@ -24,6 +24,8 @@ import java.io.OutputStream;
 import java.io.BufferedReader;
 import java.io.OutputStreamWriter;
 import java.io.InputStreamReader;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 
 
@@ -45,7 +47,7 @@ public class Pop extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * .7), (int) (height * .7));
+        getWindow().setLayout((int) (width * 1), (int) (height * 1));
 
 
         //****** SAVE USER INPUT *******//
@@ -94,7 +96,7 @@ public class Pop extends Activity {
                 }
                 final String theLocation = location.getText().toString();
                 final String theEvent = eventName.getText().toString();
-                final int theMonth = date.getMonth() + 1;
+                final int theMonth = date.getMonth();
                 final int theDay = date.getDayOfMonth();
 
                 if (theHour > 12) {
@@ -102,8 +104,17 @@ public class Pop extends Activity {
                     halfOfDay = "pm";
                 }
 
+                if (theHour == 0) {
+                    theHour = 12;
+                }
+
+                String theNewMinute = String.valueOf(theMinute);
+                if (theMinute < 10) {
+                    theNewMinute = "0" + String.valueOf(theMinute);
+                }
+
                 final String theDate = MONTHS[theMonth] + " " + String.valueOf(theDay);
-                final String theTime = String.valueOf(theHour) + ":" + String.valueOf(theMinute) + halfOfDay;
+                final String theTime = String.valueOf(theHour) + ":" + theNewMinute + halfOfDay;
 
 
                 //****** POST INPUT TO SERVER ********//
@@ -124,7 +135,7 @@ public class Pop extends Activity {
                             postDataParams.put("sponsor", theEvent);
                             postDataParams.put("other", "other");
 
-                            Log.e("params", postDataParams.toString());
+//                            Log.e("params", postDataParams.toString());
 
                             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                             conn.setReadTimeout(1500);
@@ -133,7 +144,7 @@ public class Pop extends Activity {
                             conn.setDoInput(true);
                             conn.setDoOutput(true);
 
-                            Log.e("params for url", getPostDataString(postDataParams));
+//                            Log.e("params for url", getPostDataString(postDataParams));
                             OutputStream os = conn.getOutputStream();
                             BufferedWriter writer = new BufferedWriter(
                                     new OutputStreamWriter(os, "UTF-8"));
@@ -142,14 +153,12 @@ public class Pop extends Activity {
                             writer.flush();
                             writer.close();
                             os.close();
-                            Log.e("here", "here1");
 
-                            Log.e("help", String.valueOf(conn.getResponseCode()));
+//                            Log.e("help", String.valueOf(conn.getResponseCode()));
                             int responseCode=conn.getResponseCode();
-                            Log.e("response code", String.valueOf(responseCode));
+//                            Log.e("response code", String.valueOf(responseCode));
 
                             if (responseCode == HttpURLConnection.HTTP_OK) {
-                                Log.e("here", "here2");
 
                                 BufferedReader in=new BufferedReader(
                                         new InputStreamReader(
@@ -181,7 +190,17 @@ public class Pop extends Activity {
 
                      @Override
                      protected void onPostExecute(String result) {
-                         Log.e("result", result);
+//                         Log.e("result", result);
+//                         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+//                         alertDialog.setTitle("Alert");
+//                         alertDialog.setMessage("Error! Please make sure you fill in all fields");
+//                         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                                 new DialogInterface.OnClickListener() {
+//                                     public void onClick(DialogInterface dialog, int which) {
+//                                         dialog.dismiss();
+//                                     }
+//                                 });
+//                         alertDialog.show();
 
                      }
 
@@ -213,7 +232,6 @@ public class Pop extends Activity {
                     }
                  }
                 new sendPostRequest().execute();
-                Log.v("here", "here");
                 finish();
             }
         });

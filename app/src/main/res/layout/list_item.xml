@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/shape"
         android:padding="30dp"
         android:layout_marginLeft="20dp"
@@ -22,23 +22,11 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 tools:ignore="UselessParent">
-
-                <TextView
-                    android:id="@+id/time"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/brownTheme"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:padding="2dp"
-                    android:gravity="end"
-                    android:layout_below="@+id/date"
-                    android:layout_marginBottom="40dp"
-                    />
 
                 <TextView
                     android:id="@+id/date"
@@ -51,6 +39,20 @@
                     />
 
                 <TextView
+                    android:id="@+id/time"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/brownTheme"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:padding="2dp"
+                    android:gravity="end"
+                    android:layout_below="@+id/date"
+                    android:layout_marginBottom="40dp"
+                    android:layout_above="@+id/location"
+                    />
+
+                <TextView
                     android:id="@+id/location"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -60,6 +62,7 @@
                     android:paddingTop="20dp"
                     android:gravity="right"
                     />
+
             </RelativeLayout>
 
         </LinearLayout>
@@ -75,8 +78,7 @@
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:background="@drawable/shape">
+            android:layout_height="match_parent">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -91,9 +93,9 @@
                     android:textColor="@color/brownTheme"
                     android:textSize="20sp"
                     android:textAllCaps="true"
-                    android:layout_marginBottom="40dp"
-                    tools:ignore="UnusedAttribute" />
-
+                    android:layout_marginBottom="120dp"
+                    tools:ignore="UnusedAttribute"
+                   />
 
                 <TextView
                     android:id="@+id/sponsor"
@@ -102,6 +104,7 @@
                     android:textColor="@color/brownTheme"
                     android:textSize="20sp"
                     android:gravity="start"
+                    android:layout_below="@+id/food"
                     android:layout_alignParentBottom="true"
                     />
 
