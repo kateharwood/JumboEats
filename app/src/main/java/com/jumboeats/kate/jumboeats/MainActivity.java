@@ -137,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     Crashlytics.logException(e);
-//                    Log.e("onPostExecute", e.toString());
                 }
 
             }

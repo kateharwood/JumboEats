@@ -120,7 +120,6 @@ public class Pop extends Activity {
                 //****** POST INPUT TO SERVER ********//
                  class sendPostRequest extends AsyncTask<String, Void, String> {
 
-                   // protected void onPreExecute()
 
                     protected String doInBackground(String... arg0) {
 
@@ -135,7 +134,6 @@ public class Pop extends Activity {
                             postDataParams.put("sponsor", theEvent);
                             postDataParams.put("other", "other");
 
-//                            Log.e("params", postDataParams.toString());
 
                             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                             conn.setReadTimeout(1500);
@@ -144,7 +142,6 @@ public class Pop extends Activity {
                             conn.setDoInput(true);
                             conn.setDoOutput(true);
 
-//                            Log.e("params for url", getPostDataString(postDataParams));
                             OutputStream os = conn.getOutputStream();
                             BufferedWriter writer = new BufferedWriter(
                                     new OutputStreamWriter(os, "UTF-8"));
@@ -154,9 +151,7 @@ public class Pop extends Activity {
                             writer.close();
                             os.close();
 
-//                            Log.e("help", String.valueOf(conn.getResponseCode()));
                             int responseCode=conn.getResponseCode();
-//                            Log.e("response code", String.valueOf(responseCode));
 
                             if (responseCode == HttpURLConnection.HTTP_OK) {
 
@@ -186,23 +181,6 @@ public class Pop extends Activity {
                              return "Exception: " + e.getMessage();
                          }
                     }
-
-
-                     @Override
-                     protected void onPostExecute(String result) {
-//                         Log.e("result", result);
-//                         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-//                         alertDialog.setTitle("Alert");
-//                         alertDialog.setMessage("Error! Please make sure you fill in all fields");
-//                         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-//                                 new DialogInterface.OnClickListener() {
-//                                     public void onClick(DialogInterface dialog, int which) {
-//                                         dialog.dismiss();
-//                                     }
-//                                 });
-//                         alertDialog.show();
-
-                     }
 
 
                     public String getPostDataString(JSONObject params) throws Exception {
